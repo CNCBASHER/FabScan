@@ -76,8 +76,8 @@
 //defining the origin in the cvFrame
 //the position of intersection of back plane with ground plane in cvFrame in procent
 //check the yellow laser line to calibrate, the yellow laser line should touch the bottom plane
-//#define ORIGIN_Y 0.725
-#define ORIGIN_Y 0.825
+#define ORIGIN_Y 0.725
+//#define ORIGIN_Y 0.825
 
 //the angle used to scan, obsolete when the laser is also moving
 #define SCANNING_ANGLE 33.69f//33.69f
@@ -107,9 +107,9 @@
 */
 
 //position of laser module
-#define LASER_POS_X 14.0f //precise by construction
+#define LASER_POS_X 16.4f //precise by construction
 #define LASER_POS_Y 6.4f  //not needed/used for calculations
-#define LASER_POS_Z 28.5f //precise by construction
+#define LASER_POS_Z 30.7 //28.5f //precise by construction
 
 //position of the quickcam 9000
 //#define CAM_POS_X -0.7f
@@ -119,12 +119,12 @@
 //position of the //c920 (these values are not exactly precise and should be determined by this software using algos like Eight-point algorithm)
 #define CAM_POS_X 0.0f
 #define CAM_POS_Y 6.3f 
-#define CAM_POS_Z 27.0f
+#define CAM_POS_Z 28.0f
 
 //position of the turntable
 #define TURNTABLE_POS_X 0.0f //not used by calculations
 #define TURNTABLE_POS_Y 0.0f //not used by calculations
-#define TURNTABLE_POS_Z 7.5f //precise by construction
+#define TURNTABLE_POS_Z 8.5f //precise by construction
 
 //how big is the step the laser moves when pressing the button in the ctrl window
 #define LASER_STEP 33.69f

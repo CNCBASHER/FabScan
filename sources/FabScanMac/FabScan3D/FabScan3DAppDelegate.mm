@@ -721,7 +721,7 @@
   //turn the laser line onto the object to the "SCANNING ANGLE"
   FSPoint rot = laser->getRotation();
   laser->turnNumberOfDegrees(SCANNING_ANGLE-rot.y+(laserSteps-1)*laserStepSize/2);
-  usleep(2000000); //wait a little linge since the laser needs time to turn into position
+    //usleep(2000000); //wait a little linge since the laser needs time to turn into position
   
   turntable->setDirection(FS_DIRECTION_CCW);
   turntable->enable();
@@ -890,9 +890,16 @@
   
   cvCvtColor(subImage, bitImage, CV_GRAY2RGB);
 
-  //for(int i = 0; i < lines->total; i++) {
+    if(lines->total==0) {
+        NSLog(@"Laserline not found!");
+        laser->setRotation(FSMakePoint(0, 0, 0));
+        return;
+    }
+    
+    //for(int i = 0; i < lines->total; i++) {
   for(int i = 0; i < 1; i++) {
     CvPoint* line = (CvPoint*)cvGetSeqElem(lines,i);
+      NSLog(@"Line = %i",(int)line);
     cvLine( bitImage, line[0], line[1], CV_RGB(255,255,0), 3, CV_AA, 0);
   }
   
@@ -901,7 +908,7 @@
 
   FSFloat a = LASER_POS_X - p.x;
   FSFloat b = LASER_POS_Z;
-  FSFloat alpha = atan(a/b);
+  FSFloat alpha = (float)atan(a/b);
   NSLog(@"angle=%f",alpha*180.0/CV_PI);
   
   laser->setRotation(FSMakePoint(0.0f, alpha*180.0/CV_PI, 0.0f));

@@ -203,6 +203,7 @@ enum AppState
 - (void)posCam;
 
 - (void)continuousCheckForHardware;
+- (void)autoLaserReset;
 
 /**
  * Do place the laser and camera at a position which is not measured but somehow correct, just for quick prototyping

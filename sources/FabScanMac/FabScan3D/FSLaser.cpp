@@ -23,7 +23,7 @@ FSLaser::FSLaser(FSStepper* stepper, FSSerial2* serial, unsigned char maxServoAn
   //this->maxServoAngle = maxServoAngle;
   //servoAngle = 0;
   rotation = FSMakePoint(0.0f, 0.0f, 0.0f);
-  laserPointPosition = FSMakePoint(14.0f, 0.0f, 0.0f);
+  laserPointPosition = FSMakePoint(LASER_POS_X, 0.0f, 0.0f);
   //this->turnToPosition();
 }
 

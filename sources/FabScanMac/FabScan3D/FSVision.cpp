@@ -74,7 +74,7 @@ FSPoint FSVision::convertCvPointToFSPoint(CvPoint cvPoint)
   //here we define the origin of the cvImage, we place it in the middle of the frame and in the corner of the two perpendiculair planes
   CvPoint origin;
   origin.x = cvImageSize.width/2.0f;
-  origin.y = cvImageSize.height*ORIGIN_Y;
+  origin.y = (float)cvImageSize.height*ORIGIN_Y;
   
   FSPoint fsPoint;
   
@@ -95,7 +95,7 @@ CvPoint FSVision::convertFSPointToCvPoint(FSPoint fsPoint)
   FSSize fsImageSize = FSMakeSize(FRAME_WIDTH, FRAME_WIDTH*(CAM_IMAGE_HEIGHT/CAM_IMAGE_WIDTH), 0.0f);
   CvPoint origin;
   origin.x = cvImageSize.width/2.0f;
-  origin.y = cvImageSize.height*ORIGIN_Y;
+  origin.y = (float)cvImageSize.height*ORIGIN_Y;
 
   CvPoint cvPoint;
 
@@ -193,13 +193,13 @@ void FSVision::putPointsFromFrameToCloud(IplImage* noLaserFrame, IplImage* laser
           //printf("%s %f \n", __PRETTY_FUNCTION__, alphaDelta.y);
           FSFloat alphaOld = (float)atan(fsNewPoint.z/fsNewPoint.x);
           //printf("%s %f \n",__PRETTY_FUNCTION__,alphaOld);
-          FSFloat alphaNew = alphaOld+alphaDelta.y*(M_PI/180.0f);
+          FSFloat alphaNew = (float)(alphaOld+alphaDelta.y*(M_PI/180.0f));
           FSFloat hypotenuse = (float)sqrt(fsNewPoint.x*fsNewPoint.x + fsNewPoint.z*fsNewPoint.z);
           
           if(fsNewPoint.z < 0 && fsNewPoint.x < 0){
-            alphaNew += M_PI;
+            alphaNew += (float)M_PI;
           }else if(fsNewPoint.z > 0 && fsNewPoint.x < 0){
-            alphaNew -= M_PI;
+            alphaNew -= (float)M_PI;
           }
           fsNewPoint.z = (float)sin(alphaNew)*hypotenuse;
           fsNewPoint.x = (float)cos(alphaNew)*hypotenuse;

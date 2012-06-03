@@ -7,7 +7,7 @@
 //
 
 #include "FSStepper.h"
-
+#include <iostream>
 FSStepper::FSStepper(FSSerial2* serial, FSUChar stepperID)
 {
   this->serial = serial;
@@ -26,20 +26,22 @@ void FSStepper::selectStepper(unsigned char id)
 
 void FSStepper::turnNumberOfSteps(int steps)
 {
+  std::cerr << "Number of steps:" << steps << "\n";
   selectStepper(stepperID);
   int s = steps;
   for(int i=0; i<=steps/256; i++){
     //printf("%s steps to be performed %d \n",__PRETTY_FUNCTION__, s);
     serial->writeByte(MC_PERFORM_STEP);
-    usleep(1000);
+      //usleep(1000);
     if(s<256){
       serial->writeByte(s%256);
     }else{
       serial->writeByte(255);
       s-=256;
     }
-    usleep(100000);
+      serial->readByte();  
   }
+    // usleep(100000);
 }
 
 void FSStepper::turnNumberOfDegrees(FSFloat degrees)

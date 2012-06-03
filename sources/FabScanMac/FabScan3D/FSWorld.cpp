@@ -90,7 +90,7 @@ void FSWorld::draw(void){
   
   glDisable(GL_DEPTH_TEST);
   
-  float aspect;
+  float aspect=1.0;
   if (viewHeight!=0){
     aspect = (float)viewWidth / viewHeight;
   }
